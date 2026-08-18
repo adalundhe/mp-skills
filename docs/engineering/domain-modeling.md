@@ -1,6 +1,6 @@
 ## What it does
 
-`domain-modeling` builds and sharpens a project's **ubiquitous language** while you are designing — challenging a term that conflicts with the glossary, forcing a precise word where you used a vague one, and stress-testing a relationship with a concrete scenario until the boundaries are exact.
+`domain-modeling` builds and sharpens a project's **ubiquitous language** while you are designing — challenging a term that conflicts with the glossary, forcing a precise word where you used a vague one, and stress-testing a relationship with concrete scenarios until the boundaries are exact. A term becomes canonical by surviving challenge, never by being asserted: before one resolves, the skill sweeps the code for how the concept is actually named — the term, its synonyms, the collisions — and brings the evidence ("the code says `account` in 14 places and `customer` in 3, and they point at two different tables"), checking against the field's standard vocabulary where one exists. The session's closure bar is exhaustive: every domain noun and verb it used ends canonical in `CONTEXT.md`, retired under `_Avoid_`, or an open question put to you — nothing floats undefined.
 
 It is the **active** discipline, not the passive one. Reading `CONTEXT.md` to borrow its vocabulary is a one-line habit any skill can do; this skill is for when you are *changing* the model. That is what makes it interrupt. It writes a resolved term into `CONTEXT.md` at the moment it is resolved, in the middle of the conversation, rather than producing a tidy glossary at the end — because the batched version is a summary of a [session](https://www.aihero.dev/ai-coding-dictionary/session), and the inline version is the session's actual output.
 
@@ -34,7 +34,7 @@ The glossary and the ADR are held to different standards, and conflating them is
 
 | | `CONTEXT.md` | `docs/adr/NNNN-slug.md` |
 | --- | --- | --- |
-| Holds | Terms. What a thing **is**, in one or two sentences, with rejected synonyms under `_Avoid_` | One decision, in one to three sentences: context, choice, reason |
+| Holds | Terms. What a thing **is**, in one or two sentences, with rejected synonyms under `_Avoid_` | One decision, in one to three sentences: context, choice, reason — and, since a real trade-off is what earned the ADR, which alternatives lost and why |
 | Bar to write | A vague term became canonical | **All three**: hard to reverse, surprising without context, the result of a real trade-off |
 | Written | Inline, the moment the term is settled | Offered, not assumed |
 | Never holds | Implementation details, a [spec](https://www.aihero.dev/ai-coding-dictionary/spec), a scratch pad, general programming concepts | A diary of every choice made this session |
@@ -45,14 +45,14 @@ The `CONTEXT.md` rule is the one to actually hold onto, because it is the one th
 
 ## Cross-referencing, and where it stops
 
-The move that makes the skill click: when you state how something works, it checks the code and surfaces the contradiction. *"Your code cancels entire Orders, but you just said partial cancellation is possible — which is right?"* The language and the code are made to agree, out loud, before either is changed.
+The move that makes the skill click: when you state how something works, it checks the code and surfaces the contradiction. *"Your code cancels entire Orders in `orders/cancel.ts`, but you just said partial cancellation is possible — which is right?"* The cross-referencing runs in both directions — your claims are checked against the code, and a term that just resolved is checked for everywhere the code still disagrees with it, with the full extent reported (the files, the count; whether to rename is your call). The language and the code are made to agree, out loud, before either is changed.
 
-The limit is worth knowing. It cross-references **code** and the committed `CONTEXT.md`/ADRs, and nothing else. It does not search your issue tracker, so a naming collision that was argued out and deliberately settled in a closed issue months ago gets surfaced as if it were new. There is [an open request](https://github.com/mattpocock/skills/issues/717) to fix this; until then, the workaround is to put the instruction in your own `docs/agents/domain.md`, which the skills already read.
+The limit is worth knowing. It cross-references **code**, the committed `CONTEXT.md`/ADRs, and the field's standard vocabulary where one exists — and nothing else. It does not search your issue tracker, so a naming collision that was argued out and deliberately settled in a closed issue months ago gets surfaced as if it were new. There is [an open request](https://github.com/mattpocock/skills/issues/717) to fix this; until then, the workaround is to put the instruction in your own `docs/agents/domain.md`, which the skills already read.
 
 ## Common questions
 
 **My `CONTEXT.md` is 500 lines. 1,000. 3,000. What do I do?**
-The size is a symptom, not the disease — the file has absorbed implementation detail and decisions that were never glossary material. The fix is a direct instruction: `/grill-with-docs make my CONTEXT.md more concise and remove any implementation details from it`. Run it against a bloated file and most of it goes. Only reach for a `CONTEXT-MAP.md` split once the file is genuinely lean and still covers two domains that a reader would not want to hold at once; splitting a bloated file just gives you several bloated files. The skill's guidance here is not yet strong enough to prevent the growth in the first place, and the issue tracking that is still open.
+The size is a symptom, not the disease — the file has absorbed implementation detail and decisions that were never glossary material. The fix is a direct instruction: `/grill-with-docs make my CONTEXT.md more concise and remove any implementation details from it`. Run it against a bloated file and most of it goes. Only reach for a `CONTEXT-MAP.md` split once the file is genuinely lean and still covers two domains that a reader would not want to hold at once; splitting a bloated file just gives you several bloated files. The skill now carries an explicit guard against the growth — thoroughness spends on coverage and challenge, never on entry length, and the glossary is expected to get shorter as often as it gets longer — but the historic bloat predates it, so a long-lived file may still need the cleanup pass once.
 
 **Why is it `CONTEXT.md` and not `GLOSSARY.md`?**
 This is the most-argued naming question in the whole skill set and it has no settled answer. The case against the current name is good: if it is "a glossary and nothing else", `GLOSSARY.md` says so, and — as one reader put it — "with ai agents everything is [context](https://www.aihero.dev/ai-coding-dictionary/context)". The case for it is the map: `CONTEXT-MAP.md` pointing at several `CONTEXT.md` files reads naturally in a way `GLOSSARY-MAP.md` does not, and `context` is the standing DDD word for a bounded area of the model. At least one person maintains a local fork purely to rename the file. You can do the same, but every other skill in the set looks for `CONTEXT.md`, so a rename means patching all of them.
@@ -75,6 +75,9 @@ No, and there is no plan for a skill that does. A domain language you do not und
 ## It's working if
 
 - It stops you mid-sentence to ask which of two things you meant, instead of picking one and moving on.
+- A term arrives at the table with its usage evidence — where the code says it, what the synonyms are, what the standard vocabulary calls it — rather than being accepted on assertion.
+- Definitions get probed at the borderline ("is a paused subscription an active Customer?") until a scenario breaks them or three in a row fail to.
+- The session ends with nothing floating: every domain word you used is canonical, retired under `_Avoid_`, or an open question it hands back to you.
 - `CONTEXT.md` changes **during** the conversation, not in a burst at the end.
 - It refuses to write an ADR for something you could undo tomorrow — and says which of the three tests failed.
 - New entries define what a thing *is* in one or two sentences and name the words you are giving up under `_Avoid_`.
