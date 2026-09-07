@@ -1,0 +1,5 @@
+interface:
+  display_name: "Audit Docs"
+  short_description: "Cross-doc audit: conflicts, gaps, missed opportunities — with receipts"
+policy:
+  allow_implicit_invocation: false

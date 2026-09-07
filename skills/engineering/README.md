@@ -15,6 +15,9 @@ Reachable only when you type them (Claude Code: `disable-model-invocation: true`
 - **[to-tickets](./to-tickets/SKILL.md)** — Break any plan, spec, or conversation into a set of tracer-bullet tickets, each declaring its blocking edges — text in a local file, or native blocking links on a real tracker.
 - **[implement](./implement/SKILL.md)** — Build the work described by a spec or set of tickets, driving `/tdd` at pre-agreed seams and closing out with `/code-review` before committing.
 - **[wayfinder](./wayfinder/SKILL.md)** — Plan a huge chunk of work — more than one agent session can hold — as a shared map of decision tickets on the issue tracker, resolved one at a time until the way to the destination is clear.
+- **[audit-docs](./audit-docs/SKILL.md)** — Audit a repo's architecture docs as one corpus: extract every cross-doc claim verbatim, reconcile them, and report conflicts, gaps, and missed opportunities — each finding verified, with receipts.
+- **[refactor-large-files](./refactor-large-files/SKILL.md)** — Find files over a line threshold you give it, establish the repo's own module conventions, and propose a split for each at a real seam — never at a line budget.
+- **[assess-project](./assess-project/SKILL.md)** — Grade the implementation against the architecture docs: every promise Built, Partial, Absent, or Undocumented — plus patterns, ranked improvements, and strengths/weaknesses with pitch-ready framing.
 
 ## Model-invoked
 

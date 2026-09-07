@@ -200,6 +200,9 @@ Skills I use daily for code work.
 - **[to-tickets](./skills/engineering/to-tickets/SKILL.md)** — Break any plan, spec, or conversation into a set of tracer-bullet tickets, each declaring its blocking edges — written as text in a local file, or as native blocking links on a real tracker.
 - **[implement](./skills/engineering/implement/SKILL.md)** — Build the work described by a spec or set of tickets, driving `/tdd` at pre-agreed seams and closing out with `/code-review` before committing.
 - **[wayfinder](./skills/engineering/wayfinder/SKILL.md)** — Plan a huge chunk of work, more than one agent session can hold, as a shared map of decision tickets on the issue tracker — resolve them one at a time until the way to the destination is clear.
+- **[audit-docs](./skills/engineering/audit-docs/SKILL.md)** — Audit a repo's architecture docs as one corpus: extract every cross-doc claim verbatim, reconcile them, and report conflicts, gaps, and missed opportunities — each finding verified against the sources, with receipts.
+- **[refactor-large-files](./skills/engineering/refactor-large-files/SKILL.md)** — Find files over a line threshold you give it, establish the repo's own module conventions, and propose a split for each at a real seam — never at a line budget.
+- **[assess-project](./skills/engineering/assess-project/SKILL.md)** — Grade the implementation against the architecture docs: every promise Built, Partial, Absent, or Undocumented — plus patterns and structure, ranked improvements, and strengths/weaknesses with pitch-ready framing.
 
 **Model-invoked**
 
@@ -219,6 +222,7 @@ General workflow tools, not code-specific.
 
 **User-invoked**
 
+- **[distill-docs](./skills/productivity/distill-docs/SKILL.md)** — Distill a repo's architecture docs into a README, blurb, pitch, or overview — every claim traced to a source doc, honest about what's built versus designed.
 - **[grill-me](./skills/productivity/grill-me/SKILL.md)** — Get relentlessly interviewed about a plan or design until every branch of the design tree is resolved.
 - **[handoff](./skills/productivity/handoff/SKILL.md)** — Compact the current conversation into a handoff document so another agent can continue the work.
 - **[teach](./skills/productivity/teach/SKILL.md)** — Teach the user a new skill or concept over multiple sessions, using the current directory as a stateful teaching workspace.

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Assess Project"
+  short_description: "Grade the code against the architecture docs: gaps, patterns, strengths, weaknesses"
+policy:
+  allow_implicit_invocation: false

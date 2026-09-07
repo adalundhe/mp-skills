@@ -1,0 +1,5 @@
+interface:
+  display_name: "Distill Docs"
+  short_description: "Docs corpus → README, blurb, or pitch — every claim sourced, maturity honest"
+policy:
+  allow_implicit_invocation: false

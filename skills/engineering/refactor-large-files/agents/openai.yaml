@@ -1,0 +1,5 @@
+interface:
+  display_name: "Refactor Large Files"
+  short_description: "Find files over a line threshold and propose seam-driven splits in the repo's conventions"
+policy:
+  allow_implicit_invocation: false
